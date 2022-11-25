@@ -1,3 +1,4 @@
+import { join } from 'path';
 import { Injectable } from '@nestjs/common';
 import { TypeOrmModuleOptions, TypeOrmOptionsFactory } from '@nestjs/typeorm';
 import { SnakeNamingStrategy } from 'typeorm-naming-strategies';
@@ -8,7 +9,7 @@ export class TypeOrmConfigService implements TypeOrmOptionsFactory {
     return {
       database: 'ediaristas',
       username: 'root',
-      password: 'treinaweb',
+      password: '56114067',
       host: 'localhost',
       port: 3306,
       synchronize: false,
