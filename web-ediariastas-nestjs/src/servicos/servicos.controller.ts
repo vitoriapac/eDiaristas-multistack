@@ -40,7 +40,7 @@ export class ServicosController {
   @Post()
   @Redirect('servicos/cadastrar')
   async cadastrar(@Body() createServicoDto: CreateServicoDto) {
-    await this.servicosRepository.save(createServicoDto);
+    return await this.servicosRepository.save(createServicoDto);
   }
 
   @Get(':id/edit')
@@ -51,8 +51,12 @@ export class ServicosController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateServicoDto: UpdateServicoDto) {
-    return this.servicosService.update(+id, updateServicoDto);
+  @Redirect('/servicos/index')
+  async update(
+    @Param('id') id: string,
+    @Body() updateServicoDto: UpdateServicoDto,
+  ) {
+    return await this.servicosRepository.update(id, updateServicoDto);
   }
 
   @Delete(':id')
