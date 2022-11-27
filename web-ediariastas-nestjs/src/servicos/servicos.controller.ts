@@ -1,3 +1,4 @@
+import { Servico } from './entities/servico.entity';
 import {
   Controller,
   Get,
@@ -7,14 +8,21 @@ import {
   Param,
   Delete,
   Render,
+  Redirect,
 } from '@nestjs/common';
 import { ServicosService } from './servicos.service';
 import { CreateServicoDto } from './dto/create-servico.dto';
 import { UpdateServicoDto } from './dto/update-servico.dto';
+import { Repository } from 'typeorm';
+import { InjectRepository } from '@nestjs/typeorm';
 
 @Controller('admin/servicos')
 export class ServicosController {
-  constructor(private readonly servicosService: ServicosService) {}
+  constructor(
+    private readonly servicosService: ServicosService,
+    @InjectRepository(Servico)
+    private readonly servicosRepository: Repository<Servico>,
+  ) {}
 
   @Get()
   @Render('servicos/cadastrar')
@@ -23,8 +31,9 @@ export class ServicosController {
   }
 
   @Post()
-  create(@Body() createServicoDto: CreateServicoDto) {
-    return this.servicosService.create(createServicoDto);
+  @Redirect('servicos/cadastrar')
+  async cadastrar(@Body() createServicoDto: CreateServicoDto) {
+    await this.servicosRepository.save(createServicoDto);
   }
 
   // @Get()
