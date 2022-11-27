@@ -1,3 +1,4 @@
+import { Utils } from './../utils/utils';
 import { Servico } from './entities/servico.entity';
 import {
   Controller,
@@ -20,6 +21,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 export class ServicosController {
   constructor(
     private readonly servicosService: ServicosService,
+    private readonly utils: Utils,
     @InjectRepository(Servico)
     private readonly servicosRepository: Repository<Servico>,
   ) {}
@@ -40,6 +42,27 @@ export class ServicosController {
   @Post()
   @Redirect('/admin/servicos/cadastrar')
   async cadastrar(@Body() createServicoDto: CreateServicoDto) {
+    createServicoDto.valorBanheiro = this.utils.formatDecimal(
+      createServicoDto.valorBanheiro,
+    );
+    createServicoDto.valorCozinha = this.utils.formatDecimal(
+      createServicoDto.valorCozinha,
+    );
+    createServicoDto.valorQuarto = this.utils.formatDecimal(
+      createServicoDto.valorQuarto,
+    );
+    createServicoDto.valorQuintal = this.utils.formatDecimal(
+      createServicoDto.valorQuintal,
+    );
+    createServicoDto.valorSala = this.utils.formatDecimal(
+      createServicoDto.valorSala,
+    );
+    createServicoDto.valorOutros = this.utils.formatDecimal(
+      createServicoDto.valorOutros,
+    );
+    createServicoDto.valorMinimo = this.utils.formatDecimal(
+      createServicoDto.valorMinimo,
+    );
     return await this.servicosRepository.save(createServicoDto);
   }
 
