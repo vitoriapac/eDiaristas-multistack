@@ -30,16 +30,18 @@ export class ServicosController {
     // return 'Página de cadastro de serviços';
   }
 
+  @Get('index')
+  @Render('servicos/index')
+  async listarServicos() {
+    const servicos = await this.servicosRepository.find();
+    return { servicos: servicos };
+  }
+
   @Post()
   @Redirect('servicos/cadastrar')
   async cadastrar(@Body() createServicoDto: CreateServicoDto) {
     await this.servicosRepository.save(createServicoDto);
   }
-
-  // @Get()
-  // findAll() {
-  //   return this.servicosService.findAll();
-  // }
 
   @Get(':id')
   findOne(@Param('id') id: string) {
