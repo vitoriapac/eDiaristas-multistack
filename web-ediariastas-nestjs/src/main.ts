@@ -28,7 +28,7 @@ async function bootstrap() {
     }),
   );
 
-  app.use(flash);
+  app.use(flash());
   await app.listen(3000);
 }
 bootstrap();
