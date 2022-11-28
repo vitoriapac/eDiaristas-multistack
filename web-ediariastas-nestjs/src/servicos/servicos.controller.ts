@@ -40,7 +40,7 @@ export class ServicosController {
   }
 
   @Post()
-  @Redirect('/admin/servicos/cadastrar')
+  @Redirect('/admin/servicos/index')
   async cadastrar(@Body() createServicoDto: CreateServicoDto) {
     createServicoDto.valorBanheiro = this.utils.formatDecimal(
       createServicoDto.valorBanheiro,
@@ -79,6 +79,27 @@ export class ServicosController {
     @Param('id') id: string,
     @Body() updateServicoDto: UpdateServicoDto,
   ) {
+    updateServicoDto.valorBanheiro = this.utils.formatDecimal(
+      updateServicoDto.valorBanheiro,
+    );
+    updateServicoDto.valorCozinha = this.utils.formatDecimal(
+      updateServicoDto.valorCozinha,
+    );
+    updateServicoDto.valorQuarto = this.utils.formatDecimal(
+      updateServicoDto.valorQuarto,
+    );
+    updateServicoDto.valorQuintal = this.utils.formatDecimal(
+      updateServicoDto.valorQuintal,
+    );
+    updateServicoDto.valorSala = this.utils.formatDecimal(
+      updateServicoDto.valorSala,
+    );
+    updateServicoDto.valorOutros = this.utils.formatDecimal(
+      updateServicoDto.valorOutros,
+    );
+    updateServicoDto.valorMinimo = this.utils.formatDecimal(
+      updateServicoDto.valorMinimo,
+    );
     return await this.servicosRepository.update(id, updateServicoDto);
   }
 
