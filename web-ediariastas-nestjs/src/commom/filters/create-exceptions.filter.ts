@@ -19,6 +19,7 @@ export class CreateException implements ExceptionFilter {
     if (exception instanceof BadRequestException) {
       request.flash('message', exception['response']['message']);
       request.flash('oldData', oldData);
+      response.redirect(`${url}/create`);
     } else {
       response.redirect(`${url}/index`);
     }

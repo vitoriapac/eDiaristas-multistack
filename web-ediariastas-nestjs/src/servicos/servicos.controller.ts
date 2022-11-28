@@ -10,12 +10,15 @@ import {
   Delete,
   Render,
   Redirect,
+  Request,
+  UseFilters,
 } from '@nestjs/common';
 import { ServicosService } from './servicos.service';
 import { CreateServicoDto } from './dto/create-servico.dto';
 import { UpdateServicoDto } from './dto/update-servico.dto';
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
+import { CreateException } from 'src/commom/filters/create-exceptions.filter';
 
 @Controller('admin/servicos')
 export class ServicosController {
@@ -28,8 +31,8 @@ export class ServicosController {
 
   @Get('create')
   @Render('servicos/cadastrar')
-  exibirCadastrar() {
-    // return 'Página de cadastro de serviços';
+  exibirCadastrar(@Request() req) {
+    return { message: req.flash('message'), oldData: req.flash('oldData') };
   }
 
   @Get('index')
@@ -40,6 +43,7 @@ export class ServicosController {
   }
 
   @Post()
+  @UseFilters(CreateException)
   @Redirect('/admin/servicos/index')
   async cadastrar(@Body() createServicoDto: CreateServicoDto) {
     createServicoDto.valorBanheiro = this.utils.formatDecimal(
