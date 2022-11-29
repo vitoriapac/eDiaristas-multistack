@@ -1,3 +1,4 @@
+import { PatchException } from './../commom/filters/patch-exceptions.filter';
 import { Utils } from './../utils/utils';
 import { Servico } from './entities/servico.entity';
 import {
@@ -76,12 +77,18 @@ export class ServicosController {
 
   @Get(':id/edit')
   @Render('servicos/editar')
-  async atuializarServico(@Param('id') id: number) {
+  async atuializarServico(@Param('id') id: number, @Request() req) {
     const servico = await this.servicosRepository.findOneBy({ id: id });
-    return { servico: servico };
+    return {
+      message: req.flash('message'),
+      oldData: req.flash('oldData'),
+      alert: req.flash('alert'),
+      servico: servico,
+    };
   }
 
   @Patch(':id/edit')
+  @UseFilters(PatchException)
   @Redirect('/admin/servicos/index')
   async update(
     @Param('id') id: string,
