@@ -1,0 +1,37 @@
+<div class="content-header">
+  <div class="container-fluid">
+    <h1>Lista de Usuários</h1>
+  </div>
+</div>
+
+<div class="content">
+  <div class="container-fluid">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Nome</th>
+          <th scope="col">Email</th>
+          <th scope="col">Ações</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        {{#each usuarios}}
+        <tr>
+          <th>{{this.id}}</th>
+          <td>{{this.nome}}</td>
+          <td>{{this.email}}</td>
+          <td><a href="#">Atualizar</a></td>
+          <td><a href="#">Excluir</a></td>
+        </tr>
+        {{/each}}
+      </tbody>
+    </table>
+
+    <div class="float-left">
+      <a href="#" class="btn btn-success">Novo Usuário</a>
+    </div>
+
+  </div>
+</div>
