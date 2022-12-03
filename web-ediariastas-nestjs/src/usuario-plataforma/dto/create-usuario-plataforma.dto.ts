@@ -11,7 +11,7 @@ export class CreateUsuarioPlataformaDto {
   @Length(3, 255, {
     message: 'Campo email deve ter entre 3 a 255 caracteres',
   })
-  @IsEmail()
+  @IsEmail({ message: 'Digite um email valido' })
   email: string;
 
   @IsNotEmpty({ message: 'Campo senha não pode ser vazio' })

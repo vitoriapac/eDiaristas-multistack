@@ -21,7 +21,13 @@ export class UsuarioPlataformaController {
   @Get('index')
   @Render('usuarios/index')
   async listarUsuarios() {
-    return { usuario: 'test' };
+    //   return
+  }
+
+  @Get('create')
+  @Render('usuarios/cadastrar')
+  async exibirCadastrarUsuario() {
+    //   return
   }
 
   @Post()
