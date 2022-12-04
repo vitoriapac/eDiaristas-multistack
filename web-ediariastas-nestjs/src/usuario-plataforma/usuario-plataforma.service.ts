@@ -43,7 +43,7 @@ export class UsuarioPlataformaService {
   async findOne(id: number) {
     const user = await this.usuarioRepository.findOneBy({ id: id });
     if (!user) {
-      throw new NotFoundException();
+      throw new NotFoundException('Usuário não encontrado');
     }
     return user;
   }
@@ -75,8 +75,12 @@ export class UsuarioPlataformaService {
     }
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} usuarioPlataforma`;
+  async remove(id: number) {
+    const result = await this.usuarioRepository.delete(id);
+
+    if (result.affected === 0) {
+      throw new NotFoundException('Nenhum ID encontrado');
+    }
   }
 
   async setPassword(password: string) {
