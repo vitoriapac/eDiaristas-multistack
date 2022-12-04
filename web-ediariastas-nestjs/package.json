@@ -22,8 +22,7 @@
     "typeorm": "ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js",
     "typeorm:migrate": "cross-var npm run typeorm -- -d ./src/database/migrations-config.ts migration:generate ./src/database/migrations/$npm_config_name",
     "typeorm:run": "npm run typeorm -- -d ./src/database/migrations-config.ts migration:run",
-    "typeorm:revert": "npm run typeorm -- -d ./src/database/migrations-config.ts migration:revert",
-    "db:diagram": "rimraf table.pdf entity.pdf && erdia pdf -d dist/src/database/data-source.js -o table.pdf -o entity.pdf"
+    "typeorm:revert": "npm run typeorm -- -d ./src/database/migrations-config.ts migration:revert"
   },
   "dependencies": {
     "@nestjs/common": "^9.0.0",
@@ -60,7 +59,6 @@
     "@types/supertest": "^2.0.11",
     "@typescript-eslint/eslint-plugin": "^5.0.0",
     "@typescript-eslint/parser": "^5.0.0",
-    "erdia": "^2.1.1",
     "eslint": "^8.0.1",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^4.0.0",

@@ -12,7 +12,7 @@ export class TypeOrmConfigService implements TypeOrmOptionsFactory {
     return {
       database: 'ediaristas',
       username: 'root',
-      password: process.env.DATABASE_PASSWORD,
+      password: '56114067',
       host: 'localhost',
       port: 3306,
       synchronize: false,
