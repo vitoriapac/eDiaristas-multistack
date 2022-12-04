@@ -15,6 +15,7 @@ import { UsuarioPlataformaService } from './usuario-plataforma.service';
 import { CreateUsuarioPlataformaDto } from './dto/create-usuario-plataforma.dto';
 import { UpdateUsuarioPlataformaDto } from './dto/update-usuario-plataforma.dto';
 import { CreateException } from 'src/commom/filters/create-exceptions.filter';
+import { PatchException } from 'src/commom/filters/patch-exceptions.filter';
 
 @Controller('admin/usuarios')
 export class UsuarioPlataformaController {
@@ -57,11 +58,18 @@ export class UsuarioPlataformaController {
 
   @Get(':id/edit')
   @Render('usuarios/editar')
-  editarUsuario(@Param('id') id: number) {
-    // return this.usuarioPlataformaService.findOne(+id);
+  async editarUsuario(@Param('id') id: number, @Request() req) {
+    const user = await this.usuarioPlataformaService.findOne(id);
+    return {
+      usuario: user,
+      message: req.flash('message'),
+      oldData: req.flash('oldData'),
+      alert: req.flash('alert'),
+    };
   }
 
   @Patch(':id/edit')
+  @UseFilters(PatchException)
   @Redirect('/admin/usuarios/index')
   async update(
     @Param('id') id: number,

@@ -1,5 +1,9 @@
 import { Repository } from 'typeorm';
-import { BadRequestException, Injectable } from '@nestjs/common';
+import {
+  BadRequestException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { CreateUsuarioPlataformaDto } from './dto/create-usuario-plataforma.dto';
 import { UpdateUsuarioPlataformaDto } from './dto/update-usuario-plataforma.dto';
@@ -33,11 +37,15 @@ export class UsuarioPlataformaService {
   }
 
   async findAll() {
-    return this.usuarioRepository.find();
+    return await this.usuarioRepository.find();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} usuarioPlataforma`;
+  async findOne(id: number) {
+    const user = await this.usuarioRepository.findOneBy({ id: id });
+    if (!user) {
+      throw new NotFoundException();
+    }
+    return user;
   }
 
   async update(
@@ -50,7 +58,7 @@ export class UsuarioPlataformaService {
     });
 
     if (
-      updateUsuarioPlataformaDto !==
+      updateUsuarioPlataformaDto.password !==
       updateUsuarioPlataformaDto.passwordConfirmation
     ) {
       throw new BadRequestException('Senha não confere');

@@ -1,0 +1,96 @@
+<main>
+  <div class='content-header'>
+    <div class='container-fluid'>
+      <h1>Editar Usuário</h1>
+    </div>
+  </div>
+
+  <div class='content'>
+    <div class='container-fluid'>
+
+      <form action='/admin/usuarios/{{usuario.id}}/edit?_method=PATCH' method='post'>
+        <div class='card'>
+          <div class='card-body'>
+            <fieldset>
+              <div class='row'>
+
+                <div class='col-lg-12'>
+                  <div class='col-lg-3'>
+                    <div class='{{alert}}'>
+                      <span>{{{message}}}</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class='col-md-6'>
+                  <div class='form-group'>
+                    <label for='nome'>Nome</label>
+                    <input
+                      type='text'
+                      required
+                      value='{{#if message}}{{oldData.0.nome}}{{^}}{{ usuario.nome }}{{/if}}'
+                      class='form-control'
+                      name='nome'
+                      placeholder='Nome do Usuário'
+                    />
+                  </div>
+                </div>
+
+                <div class='col-md-6'>
+                  <div class='form-group'>
+                    <label for='email'>Email</label>
+                    <input
+                      type='email'
+                      required
+                      value='{{#if message}}{{oldData.0.email}}{{^}}{{ usuario.email }}{{/if}}'
+                      class='form-control'
+                      name='email'
+                      placeholder='Email do Usuário'
+                    />
+                  </div>
+                </div>
+
+                <div class='col-md-6'>
+                  <div class='form-group'>
+                    <label for='password'>Senha</label>
+                    <input
+                      type='password'
+                      required
+                      value=''
+                      class='form-control'
+                      name='password'
+                      placeholder='Senha do Usuário'
+                    />
+                  </div>
+                </div>
+
+                <div class='col-md-6'>
+                  <div class='form-group'>
+                    <label for='passwordConfirmation'>Confirme a Senha</label>
+                    <input
+                      type='password'
+                      required
+                      value=''
+                      class='form-control'
+                      name='passwordConfirmation'
+                      placeholder='Confirme a Senha'
+                    />
+                  </div>
+                </div>
+
+              </div>
+            </fieldset>
+
+            <div class='col-md-4'>
+              <div class='form-group'>
+                <button class='btn btn-primary' type='submit'>Salvar</button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </form>
+
+    </div>
+  </div>
+</main>
