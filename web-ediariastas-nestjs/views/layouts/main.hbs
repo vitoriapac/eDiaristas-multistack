@@ -43,7 +43,12 @@
       <aside class='main-sidebar sidebar-dark-primary elevation-4'>
         <!-- Brand Logo -->
         <a href='#' class='brand-link'>
-          <img src="/img/logo-icon.png" alt="Logo e-diaristas" class="brand-image img-circle elevation-3" style="opacity: 0.8;">
+          <img
+            src='/img/logo-icon.png'
+            alt='Logo e-diaristas'
+            class='brand-image img-circle elevation-3'
+            style='opacity: 0.8;'
+          />
           <span class='brand-text font-weight-light'>Administração</span>
         </a>
 
@@ -58,8 +63,7 @@
               role='menu'
               data-accordion='false'
             >
-              <!-- Add icons to the links using the .nav-icon class
-              with font-awesome or any other icon font library -->
+              <!-- Menu Servicos -->
               <li class='nav-item menu-open'>
                 <a href='#' class='nav-link active'>
                   <i class='fas fa-fw fa-broom'></i>
@@ -83,6 +87,36 @@
                     <a href='/admin/servicos/create' class='nav-link'>
                       <i class='fas fa-fw fa-file'></i>
                       <p>Novo Serviço</p>
+                    </a>
+                  </li>
+                </ul>
+
+              </li>
+
+              <!-- Menu Usuarios -->
+              <li class='nav-item menu-open'>
+                <a href='#' class='nav-link active'>
+                  <i class='fas fa-fw fa-user'></i>
+                  <p>
+                    Cadastro de Usuários
+                    <i class='right fas fa-angle-left'></i>
+                  </p>
+                </a>
+
+                <ul class='nav nav-treeview'>
+                  <li class='nav-item'>
+                    <a href='/admin/usuarios/index' class='nav-link'>
+                      <i class='fas fa-fw fa-list'></i>
+                      <p>Lista de Usuários</p>
+                    </a>
+                  </li>
+                </ul>
+
+                <ul class='nav nav-treeview'>
+                  <li class='nav-item'>
+                    <a href='/admin/usuarios/create' class='nav-link'>
+                      <i class='fas fa-fw fa-file'></i>
+                      <p>Novo Usuario</p>
                     </a>
                   </li>
                 </ul>
@@ -125,7 +159,9 @@
     <!-- jQuery -->
     <script src='/js/jquery/jquery.min.js'></script>
     <!-- jQuery Mask -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+    <script
+      src='https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js'
+    ></script>
     <!-- Bootstrap 4 -->
     <script src='/js/bootstrap/js/bootstrap.bundle.min.js'></script>
     <!-- AdminLTE App -->
