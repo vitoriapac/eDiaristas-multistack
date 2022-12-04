@@ -40,8 +40,31 @@ export class UsuarioPlataformaService {
     return `This action returns a #${id} usuarioPlataforma`;
   }
 
-  update(id: number, updateUsuarioPlataformaDto: UpdateUsuarioPlataformaDto) {
-    return `This action updates a #${id} usuarioPlataforma`;
+  async update(
+    id: number,
+    updateUsuarioPlataformaDto: UpdateUsuarioPlataformaDto,
+  ) {
+    const user = await this.usuarioRepository.findOneBy({ id: id });
+    const userEmail = await this.usuarioRepository.findOneBy({
+      email: updateUsuarioPlataformaDto.email,
+    });
+
+    if (
+      updateUsuarioPlataformaDto !==
+      updateUsuarioPlataformaDto.passwordConfirmation
+    ) {
+      throw new BadRequestException('Senha não confere');
+    } else if (!userEmail || userEmail.email === user.email) {
+      user.nome = updateUsuarioPlataformaDto.nome;
+      user.email = updateUsuarioPlataformaDto.email;
+      user.password = await this.setPassword(
+        updateUsuarioPlataformaDto.password,
+      );
+      await this.usuarioRepository.save(user);
+      return user;
+    } else if (userEmail.email !== user.email) {
+      throw new BadRequestException('Email já cadastrado, usar outro email');
+    }
   }
 
   remove(id: number) {
