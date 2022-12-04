@@ -5,6 +5,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ServicosModule } from './servicos/servicos.module';
 import { UsuarioPlataformaModule } from './usuario-plataforma/usuario-plataforma.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -13,6 +14,7 @@ import { UsuarioPlataformaModule } from './usuario-plataforma/usuario-plataforma
     }),
     ServicosModule,
     UsuarioPlataformaModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],
