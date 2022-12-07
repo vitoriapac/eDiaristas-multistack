@@ -18,6 +18,7 @@ import { UpdateUsuarioPlataformaDto } from './dto/update-usuario-plataforma.dto'
 import { CreateException } from 'src/commom/filters/create-exceptions.filter';
 import { PatchException } from 'src/commom/filters/patch-exceptions.filter';
 import { AuthenticatedGuard } from 'src/commom/guards/authenticated.guard';
+import { AuthException } from 'src/commom/filters/auth-exceptions.filter';
 
 @Controller('admin/usuarios')
 export class UsuarioPlataformaController {
@@ -25,14 +26,17 @@ export class UsuarioPlataformaController {
     private readonly usuarioPlataformaService: UsuarioPlataformaService,
   ) {}
 
-  @UseGuards(AuthenticatedGuard)
   @Get('index')
+  @UseGuards(AuthenticatedGuard)
+  @UseFilters(AuthException)
   @Render('usuarios/index')
   async listarUsuarios() {
     return { usuarios: await this.usuarioPlataformaService.findAll() };
   }
 
   @Get('create')
+  @UseGuards(AuthenticatedGuard)
+  @UseFilters(AuthException)
   @Render('usuarios/cadastrar')
   async exibirCadastrarUsuario(@Request() req) {
     return {
@@ -43,23 +47,16 @@ export class UsuarioPlataformaController {
   }
 
   @Post()
+  @UseGuards(AuthenticatedGuard)
   @UseFilters(CreateException)
   @Redirect('/admin/usuarios/index')
   create(@Body() createUsuarioPlataformaDto: CreateUsuarioPlataformaDto) {
     return this.usuarioPlataformaService.create(createUsuarioPlataformaDto);
   }
 
-  @Get()
-  findAll() {
-    return this.usuarioPlataformaService.findAll();
-  }
-
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.usuarioPlataformaService.findOne(+id);
-  }
-
   @Get(':id/edit')
+  @UseGuards(AuthenticatedGuard)
+  @UseFilters(AuthException)
   @Render('usuarios/editar')
   async editarUsuario(@Param('id') id: number, @Request() req) {
     const user = await this.usuarioPlataformaService.findOne(id);
@@ -85,6 +82,8 @@ export class UsuarioPlataformaController {
   }
 
   @Delete(':id')
+  @UseGuards(AuthenticatedGuard)
+  @UseFilters(AuthException)
   @Redirect('/admin/usuarios/index')
   remove(@Param('id') id: number) {
     return this.usuarioPlataformaService.remove(id);
