@@ -14,6 +14,7 @@ import {
 } from "./Header.styled";
 import Link from "UI/components/navigation/Link/Link";
 import RoundedButton from "UI/components/inputs/RoundedButton/RoundedButton";
+import { useState } from "react";
 
 const Header: React.FC = () => {
   return <HeaderMobile />;
@@ -46,16 +47,25 @@ const HeaderDesktop: React.FC = () => {
 };
 
 const HeaderMobile: React.FC = () => {
+  const [isDrawerOpen, setDrawerOpen] = useState(false);
   return (
     <HeaderAppBar>
       <Toolbar component={Container}>
-        <IconButton edge={"start"} color={"inherit"}>
+        <IconButton
+          edge={"start"}
+          color={"inherit"}
+          onClick={() => setDrawerOpen(true)}
+        >
           <i className="twf-bars" />
         </IconButton>
         <Link href="/">
           <HeaderLogo src="./img/logos/logo.svg" alt="Logo e-diaristas" />
         </Link>
-        <HeaderDrawer open={true}>
+        <HeaderDrawer
+          open={isDrawerOpen}
+          onClose={() => setDrawerOpen(false)}
+          onClick={() => setDrawerOpen(false)}
+        >
           <MenuList>
             <Link href="/login" Component={MenuItem}>
               Login
