@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   Container,
   Divider,
@@ -14,10 +15,11 @@ import {
 } from "./Header.styled";
 import Link from "UI/components/navigation/Link/Link";
 import RoundedButton from "UI/components/inputs/RoundedButton/RoundedButton";
-import { useState } from "react";
+import useIsMobile from "data/hooks/useIsMobile";
 
 const Header: React.FC = () => {
-  return <HeaderMobile />;
+  const isMobile = useIsMobile();
+  return isMobile ? <HeaderMobile /> : <HeaderDesktop />;
 };
 
 const HeaderDesktop: React.FC = () => {
