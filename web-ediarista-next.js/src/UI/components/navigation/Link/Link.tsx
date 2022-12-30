@@ -7,7 +7,7 @@ import {
 } from "@mui/material";
 import React, { PropsWithChildren } from "react";
 
-interface LinkProps {
+export interface LinkProps {
   href: string;
   mui?: MuiLinkProps | ButtonProps;
   next?: NextLinkProps;
