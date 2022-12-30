@@ -1,12 +1,24 @@
+import { useEffect, useState } from "react";
 import {
   ContainerStyle,
   SectionButton,
   SectionContainer,
+  SectionPictureContainer,
   SectionSubtitle,
   SectionTitle,
 } from "./_presentation.styled";
 
 const Presentation = () => {
+  const [cleanerPicture, setCleanerPicture] = useState("");
+
+  useEffect(() => {
+    const newCleanerPicture =
+      Math.random() < 0.5
+        ? "/img/home/janitor.png"
+        : "/img/home/housekeeper.png";
+    setCleanerPicture(newCleanerPicture);
+  }, []);
+
   return (
     <SectionContainer>
       <ContainerStyle>
@@ -25,6 +37,10 @@ const Presentation = () => {
         >
           Encontrar um(a) diarista
         </SectionButton>
+
+        <SectionPictureContainer>
+          <img src={cleanerPicture} alt="" />
+        </SectionPictureContainer>
       </ContainerStyle>
     </SectionContainer>
   );
