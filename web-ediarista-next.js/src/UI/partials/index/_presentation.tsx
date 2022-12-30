@@ -1,10 +1,10 @@
-import { SectionContainer } from "./_presentation.styled";
+import { ContainerStyle, SectionContainer } from "./_presentation.styled";
 
 const Presentation = () => {
   return (
-    <div>
-      <SectionContainer></SectionContainer>
-    </div>
+    <SectionContainer>
+      <ContainerStyle></ContainerStyle>
+    </SectionContainer>
   );
 };
 
