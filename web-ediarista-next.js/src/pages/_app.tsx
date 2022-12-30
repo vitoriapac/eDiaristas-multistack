@@ -2,12 +2,23 @@ import "@styles/globals.css";
 import type { AppProps } from "next/app";
 import { ThemeProvider } from "@mui/material";
 import theme from "UI/themes/theme";
+import Header from "UI/components/surfaces/Header/Header";
+import Footer from "UI/components/surfaces/Footer/Footer";
+import { AppContainer } from "@styles/pages/AppContainer.styled";
+import Head from "next/head";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
+      <Head>
+        <title>E-diaristas</title>
+      </Head>
       <ThemeProvider theme={theme}>
-        <Component {...pageProps} />
+        <AppContainer>
+          <Header />
+          <Component {...pageProps} />
+          <Footer />
+        </AppContainer>
       </ThemeProvider>
     </>
   );
