@@ -1,4 +1,5 @@
 import type { GetStaticProps, NextPage } from "next";
+import Presentation from "@partials/index/_presentation";
 
 export const getStaticProps: GetStaticProps = async () => {
   return {
@@ -8,8 +9,12 @@ export const getStaticProps: GetStaticProps = async () => {
   };
 };
 
-const Index: NextPage = (props) => {
-  return <div></div>;
+const Index: NextPage = () => {
+  return (
+    <div>
+      <Presentation />
+    </div>
+  );
 };
 
 export default Index;
