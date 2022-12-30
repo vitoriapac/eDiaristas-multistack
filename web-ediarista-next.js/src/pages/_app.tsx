@@ -11,12 +11,14 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
       <Head>
-        <title>E-diaristas</title>
+        <title>E-diaristas {pageProps.title && ` - ${pageProps.title}`}</title>
       </Head>
       <ThemeProvider theme={theme}>
         <AppContainer>
           <Header />
-          <Component {...pageProps} />
+          <main>
+            <Component {...pageProps} />
+          </main>
           <Footer />
         </AppContainer>
       </ThemeProvider>

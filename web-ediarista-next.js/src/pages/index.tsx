@@ -1,7 +1,15 @@
-import type { NextPage } from "next";
+import type { GetStaticProps, NextPage } from "next";
 
-const Home: NextPage = () => {
+export const getStaticProps: GetStaticProps = async () => {
+  return {
+    props: {
+      title: "Home",
+    },
+  };
+};
+
+const Index: NextPage = (props) => {
   return <div></div>;
 };
 
-export default Home;
+export default Index;
