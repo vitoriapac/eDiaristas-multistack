@@ -1,5 +1,6 @@
 import type { GetStaticProps, NextPage } from "next";
 import Presentation from "@partials/index/_presentation";
+import Advantages from "@partials/index/_advantages";
 
 export const getStaticProps: GetStaticProps = async () => {
   return {
@@ -13,6 +14,7 @@ const Index: NextPage = () => {
   return (
     <div>
       <Presentation />
+      <Advantages />
     </div>
   );
 };
