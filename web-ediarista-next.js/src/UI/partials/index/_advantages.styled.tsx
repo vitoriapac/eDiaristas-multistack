@@ -1,4 +1,4 @@
-import { Avatar, List, ListItemText } from "@mui/material";
+import { Avatar, Divider, List, ListItemText } from "@mui/material";
 import { styled } from "@mui/material/styles";
 
 export const GradientBackground = styled("section")`
@@ -53,9 +53,6 @@ export const AvatarStyle = styled(Avatar)`
 
   i {
     font-size: 25px;
-    position: relative;
-    left: -1px;
-    bottom: 1px;
   }
 
   ${({ theme }) => theme.breakpoints.up("md")} {
@@ -64,9 +61,6 @@ export const AvatarStyle = styled(Avatar)`
 
     i {
       font-size: 50px;
-      position: relative;
-      left: -1px;
-      bottom: 1px;
     }
   }
 `;
@@ -78,5 +72,15 @@ export const ListItemTextStyled = styled(ListItemText)`
 
   .MuiListItemText-secondary {
     color: currentColor;
+  }
+`;
+
+export const ListDivider = styled(Divider)`
+  &MuiDivider-root {
+    border-color: rgba(255, 255, 255, 0.8);
+  }
+
+  ${({ theme }) => theme.breakpoints.up("md")} {
+    display: none;
   }
 `;
