@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import {
+  BottomButton,
   ContainerStyle,
   SectionButton,
   SectionContainer,
@@ -42,6 +43,9 @@ const Presentation = () => {
           <img src={cleanerPicture} alt="" />
         </SectionPictureContainer>
       </ContainerStyle>
+      <BottomButton>
+        <i className="twf-caret-down" />
+      </BottomButton>
     </SectionContainer>
   );
 };
