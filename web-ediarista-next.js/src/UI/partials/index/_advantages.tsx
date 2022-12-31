@@ -1,13 +1,12 @@
-import { GradientBackground } from "./_advantages.styled";
+import { Container } from "@mui/material";
+import { GradientBackground, SectionTitle } from "./_advantages.styled";
 
 const Advantages = () => {
   return (
     <GradientBackground>
-      Reprehenderit id cupidatat minim eiusmod cupidatat eiusmod anim. Et
-      adipisicing commodo do officia velit anim pariatur et laborum fugiat.
-      Consequat ut dolor voluptate labore laborum cillum cillum deserunt id
-      dolore id do voluptate aliqua. Aliquip excepteur Lorem exercitation
-      voluptate laborum reprehenderit in nulla veniam deserunt aliquip.
+      <Container>
+        <SectionTitle>Por que usar o E-diaristas?</SectionTitle>
+      </Container>
     </GradientBackground>
   );
 };
