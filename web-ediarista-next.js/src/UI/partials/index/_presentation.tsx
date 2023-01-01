@@ -43,6 +43,7 @@ const Presentation = () => {
           <img src={cleanerPicture} alt="" />
         </SectionPictureContainer>
       </ContainerStyle>
+
       <BottomButton>
         <i className="twf-caret-down" />
       </BottomButton>
