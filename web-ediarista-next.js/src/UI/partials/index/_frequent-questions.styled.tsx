@@ -41,10 +41,10 @@ export const AccordionStyled = styled(Accordion)`
   &.MuiAccordion-root {
     box-shadow: none;
     border: 2px solid ${({ theme }) => theme.palette.primary.main};
-  }
 
-  &::before {
-    background-color: transparent;
+    &::before {
+      background-color: transparent;
+    }
 
     &,
     &.Mui-expanded {
