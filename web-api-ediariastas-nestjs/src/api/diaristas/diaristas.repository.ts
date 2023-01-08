@@ -10,7 +10,7 @@ export class DiaristaRepository {
 
   repository = this.diaristaRepository.extend({
     async buscarDiaristaPorCep(): Promise<UsuarioApi[]> {
-      return await this.diaristaRepository.find();
+      return await this.find();
     },
   });
 }
