@@ -1,6 +1,6 @@
-import { UsuarioApi } from './../usuarios/entities/usuario.entity';
-import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
+import { InjectRepository } from '@nestjs/typeorm';
+import { UsuarioApi } from './../usuarios/entities/usuario.entity';
 
 export class DiaristaRepository {
   constructor(
@@ -9,8 +9,15 @@ export class DiaristaRepository {
   ) {}
 
   repository = this.diaristaRepository.extend({
-    async buscarDiaristaPorCep(): Promise<UsuarioApi[]> {
-      return await this.find();
+    async buscarDiaristaPorCodigoIbge(ibge: string): Promise<UsuarioApi[]> {
+      const query = this.createQueryBuilder('usuario')
+        .leftJoinAndSelect('usuario.cidadesAtendidas', 'cidadesAtendidas')
+        .where('cidadesAtendidas.codigoIbge = :ibge', { ibge: ibge })
+        .andWhere('usuario.tipoUsuario = 2')
+        .orderBy('usuario.reputacao', 'DESC');
+
+      const usuarios = await query.getMany();
+      return usuarios;
     },
   });
 }
