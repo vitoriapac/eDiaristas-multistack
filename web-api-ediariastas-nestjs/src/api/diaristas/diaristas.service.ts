@@ -1,3 +1,4 @@
+import { DiaristaLocalidadePagedResponse } from './dto/diaristas-localidades-paged-response.dto';
 import { Injectable } from '@nestjs/common';
 import { DiaristaMapper } from './diarista.mapper';
 import { DiaristaRepository } from './diaristas.repository';
@@ -13,12 +14,21 @@ export class DiaristasService {
 
   async buscarDiaristaPorCep(cep: string) {
     const codigoIbge = await this.buscarCodigoIbgePorCep(cep);
+    const pageSize = 3;
+
     const usuarios =
       await this.diaristaRepository.repository.buscarDiaristaPorCodigoIbge(
         codigoIbge,
+        pageSize,
       );
-    return usuarios.map((usuario) =>
+
+    const diaristas = usuarios.content.map((usuario) =>
       this.diaristaMapper.toDiaristaLocalidadeResponseDto(usuario),
+    );
+    return new DiaristaLocalidadePagedResponse(
+      diaristas,
+      pageSize,
+      usuarios.totalElementos,
     );
   }
 
