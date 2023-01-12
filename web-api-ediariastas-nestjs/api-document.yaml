@@ -1,0 +1,75 @@
+openapi: 3.0.1
+info:
+  title: E-diaristas
+  description: Api Backend da Aplicação E-diarista.
+  version: 1.0.0
+  contact:
+    name: Vitoria
+    url: https://www.github.com/vitoriapac
+    email: vitoriac.pac@gmail.com
+servers:
+  - url: http://localhost:3000
+    description: Aplicação Nest Local
+paths:
+  /api/diaristas/localidades:
+    get:
+      operationId: getDiaristasLocalidades
+      description: Buscar diaristas que atendem uma determinada localidade
+      parameters:
+        - name: cep
+          in: query
+          required: true
+          schema:
+            type: string
+          example: '04614903'
+      responses:
+        '200':
+          description: Busca foi realizada com sucesso
+          content:
+            'aplication/json':
+              schema:
+                $ref: '#/components/schemas/DiaristaLocalidadePagedResponse'
+        '400':
+          description: CEP não informado ou inválido
+          content:
+            'aplication/json':
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: CEP informado não encontrado
+          content:
+            'aplication/json':
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+components:
+  schemas:
+    DiaristaLocalidadePagedResponse:
+      type: object
+      properties:
+        diaristas:
+          type: array
+          items:
+            $ref: '#/components/schemas/DiaristaLocalidadeResponse'
+    DiaristaLocalidadeResponse:
+      type: object
+      properties:
+        nome_completo:
+          type: string
+        reputacao:
+          type: string
+          format: double
+        foto_usuario:
+          type: string
+          format: url
+        cidade:
+          type: string
+    ErrorResponse:
+      type: object
+      properties:
+        status:
+          type: integer
+        timestamp:
+          type: string
+          format: date-time
+        message:
+          type: string
