@@ -1,0 +1,15 @@
+import React from "react";
+import { ComponentMeta, ComponentStory } from "@storybook/react";
+import {{ name }} from "./{{ name }}";
+
+export default {
+  title: "{{ type }}/{{ name }}",
+  component: {{ name }},
+} as ComponentMeta<typeof {{ name }}>;
+
+const Template: ComponentStory<typeof {{ name }}> = (args) => (
+  <{{ name }} {...args}>Click</>
+);
+
+export const Default = Template.bind({});
+Default.args = {};
