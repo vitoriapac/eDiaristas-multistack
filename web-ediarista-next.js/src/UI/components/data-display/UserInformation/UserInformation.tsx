@@ -1,11 +1,11 @@
 import { SystemProps } from "@mui/system";
 import React, { PropsWithChildren } from "react";
 import {
-  AvatarStyled,
-  RatingStyed,
-  UserDescription,
   UserInformationContainer,
   UserName,
+  UserDescription,
+  AvatarStyled,
+  RatingStyed,
 } from "./UserInformation.styled";
 
 export interface UserInformationProps {
