@@ -10,7 +10,8 @@
     "storybook": "start-storybook -p 6006 -s ./public",
     "build-storybook": "build-storybook",
     "jest": "jest --watch",
-    "plop": "plop"
+    "plop": "plop",
+    "cypress:open": "cypress open"
   },
   "dependencies": {
     "@emotion/css": "^11.9.0",
