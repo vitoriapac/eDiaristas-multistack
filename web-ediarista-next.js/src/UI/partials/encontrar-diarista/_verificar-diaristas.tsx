@@ -29,19 +29,19 @@ const VerificarDiaristas: React.FC<PropsWithChildren> = () => {
       <SafeEnvironment />
       <PageTitle
         title="Conheça os profissionais"
-        subtitle="Veja todos os profissionais da sua localidade."
+        subtitle="Preencha seu endereço e veja todos os profissionais da sua localidade"
       />
-      <Container sx={{ mb: "110px" }}>
+      <Container sx={{ mb: 10 }}>
         <FormElementsContainer>
           <TextFieldMask
             mask="99.999-999"
-            label="Digite o seu CEP"
+            label="Digite seu CEP"
             value={cep}
             onChange={(event) => setCep(event.target.value)}
             fullWidth
           />
 
-          {error && <Typography color="error">CEP não encontrado!</Typography>}
+          {error && <Typography color="error">Cep não encontrado</Typography>}
 
           <Button
             variant="contained"
@@ -69,13 +69,6 @@ const VerificarDiaristas: React.FC<PropsWithChildren> = () => {
                     />
                   );
                 })}
-
-                {/* <UserInformation
-                    name="Emelda Stenroos"
-                    picture="https://xsgames.co/randomusers/assets/avatars/female/57.jpg"
-                    rating={3}
-                    description="Faz de tudo"
-                  /> */}
               </ProfissionaisContainer>
 
               <Container sx={{ textAlign: "center" }}>
@@ -83,28 +76,24 @@ const VerificarDiaristas: React.FC<PropsWithChildren> = () => {
                   <Typography
                     variant="body2"
                     color="textSecondary"
-                    sx={{ mt: "5px" }}
+                    sx={{ mt: 5 }}
                   >
-                    ...e mais {diaristasRestantes}{" "}
+                    ...e mais {diaristasRestantes}
                     {diaristasRestantes > 1
-                      ? " profissionais atendem"
-                      : "profissional atende"}
+                      ? " profissionais atendem "
+                      : " profissional atende "}
                     .
                   </Typography>
                 )}
 
-                <Button
-                  variant="contained"
-                  color="secondary"
-                  sx={{ mt: "5px" }}
-                >
+                <Button variant="contained" color="secondary" sx={{ mt: 5 }}>
                   Contratar um(a) profissional
                 </Button>
               </Container>
             </ProfissionaisPaper>
           ) : (
             <Typography align="center" color="textPrimary">
-              Ainda não temos nenhum(a) diarista disponível na sua região.
+              Ainda não temos nenhum(a) diarista disponível em sua região
             </Typography>
           ))}
       </Container>

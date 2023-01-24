@@ -8,15 +8,14 @@ import {
   Delete,
 } from '@nestjs/common';
 import { UsuariosService } from './usuarios.service';
-import { CreateUsuarioDto } from './dto/usuario-request.dto';
-import { UpdateUsuarioDto } from './dto/update-usuario.dto';
+import { UsuarioRequestDto } from './dto/usuario-request.dto';
 
 @Controller('usuarios')
 export class UsuariosController {
   constructor(private readonly usuariosService: UsuariosService) {}
 
   @Post()
-  create(@Body() createUsuarioDto: CreateUsuarioDto) {
+  create(@Body() createUsuarioDto: UsuarioRequestDto) {
     return this.usuariosService.create(createUsuarioDto);
   }
 
@@ -30,10 +29,10 @@ export class UsuariosController {
     return this.usuariosService.findOne(+id);
   }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateUsuarioDto: UpdateUsuarioDto) {
-    return this.usuariosService.update(+id, updateUsuarioDto);
-  }
+  // @Patch(':id')
+  // update(@Param('id') id: string, @Body() updateUsuarioDto: UpdateUsuarioDto) {
+  //   return this.usuariosService.update(+id, updateUsuarioDto);
+  // }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
