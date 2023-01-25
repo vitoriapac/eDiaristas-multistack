@@ -26,7 +26,7 @@ export class UsuarioRequestDto {
   cpf: string;
 
   @IsOptional()
-  reputacao: string;
+  reputacao: number;
 
   @IsDateString('', { message: 'Data de nascimento deve ser uma data valida' })
   nascimento: Date;
