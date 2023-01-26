@@ -1,41 +1,13 @@
-import {
-  Controller,
-  Get,
-  Post,
-  Body,
-  Patch,
-  Param,
-  Delete,
-} from '@nestjs/common';
+import { Controller, Post, Body } from '@nestjs/common';
 import { UsuariosService } from './usuarios.service';
 import { UsuarioRequestDto } from './dto/usuario-request.dto';
 
-@Controller('usuarios')
+@Controller('api/usuarios')
 export class UsuariosController {
   constructor(private readonly usuariosService: UsuariosService) {}
 
   @Post()
-  create(@Body() createUsuarioDto: UsuarioRequestDto) {
-    return this.usuariosService.create(createUsuarioDto);
-  }
-
-  @Get()
-  findAll() {
-    return this.usuariosService.findAll();
-  }
-
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.usuariosService.findOne(+id);
-  }
-
-  // @Patch(':id')
-  // update(@Param('id') id: string, @Body() updateUsuarioDto: UpdateUsuarioDto) {
-  //   return this.usuariosService.update(+id, updateUsuarioDto);
-  // }
-
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.usuariosService.remove(+id);
+  async cadastrar(@Body() usuarioRequestDto: UsuarioRequestDto) {
+    return await this.usuariosService.cadastrar(usuarioRequestDto);
   }
 }
