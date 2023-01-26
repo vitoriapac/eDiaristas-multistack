@@ -6,6 +6,7 @@ import {
   Length,
   Validate,
 } from 'class-validator';
+import { EmailJaExiste } from 'src/core/validators/usuarios/validator-email';
 import { IdadeValida } from 'src/core/validators/usuarios/validator-idade';
 
 export class UsuarioRequestDto {
@@ -20,6 +21,7 @@ export class UsuarioRequestDto {
   @Length(3, 255, {
     message: 'Email deve possuir entre 3 e 255 caracteres',
   })
+  @Validate(EmailJaExiste)
   email: string;
 
   @IsNotEmpty()
