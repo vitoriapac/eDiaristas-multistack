@@ -21,7 +21,7 @@ export class UsuarioMapper {
     return usuario;
   }
 
-  toUsuarioResponse(usuario: UsuarioApi): UsuarioResponseDto {
+  toUsuarioResponseDto(usuario: UsuarioApi): UsuarioResponseDto {
     const usuarioDto = new UsuarioResponseDto();
 
     usuarioDto.id = usuario.id;

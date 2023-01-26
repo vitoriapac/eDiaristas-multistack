@@ -1,25 +1,27 @@
 import { Injectable } from '@nestjs/common';
+import { UsuarioMapper } from './usuarios.mapper';
+import { UsuarioRepository } from './usuarios.repository';
 import { UsuarioRequestDto } from './dto/usuario-request.dto';
 
 @Injectable()
 export class UsuariosService {
-  create(createUsuarioDto: UsuarioRequestDto) {
-    return 'This action adds a new usuario';
-  }
+  constructor(
+    private usuarioRepository: UsuarioRepository,
+    private usuarioMapper: UsuarioMapper,
+  ) {}
 
-  findAll() {
-    return `This action returns all usuarios`;
-  }
+  async cadastrar(usuarioRequestDto: UsuarioRequestDto) {
+    const usuarioParaCadastrar =
+      this.usuarioMapper.toUsuarioRequestDto(usuarioRequestDto);
 
-  findOne(id: number) {
-    return `This action returns a #${id} usuario`;
-  }
+    usuarioParaCadastrar.senha = await usuarioParaCadastrar.setPassword(
+      usuarioRequestDto.password,
+    );
 
-  update(id: number) {
-    return `This action updates a #${id} usuario`;
-  }
+    const usuarioCadastrado = await this.usuarioRepository.repository.save(
+      usuarioParaCadastrar,
+    );
 
-  remove(id: number) {
-    return `This action removes a #${id} usuario`;
+    return this.usuarioMapper.toUsuarioResponseDto(usuarioCadastrado);
   }
 }
