@@ -1,5 +1,12 @@
 import { Expose } from 'class-transformer';
-import { IsDateString, IsNotEmpty, IsOptional, Length } from 'class-validator';
+import {
+  IsDateString,
+  IsNotEmpty,
+  IsOptional,
+  Length,
+  Validate,
+} from 'class-validator';
+import { IdadeValida } from 'src/core/validators/usuarios/validator-idade';
 
 export class UsuarioRequestDto {
   id: number;
@@ -33,6 +40,7 @@ export class UsuarioRequestDto {
   reputacao: number;
 
   @IsDateString('', { message: 'Data de nascimento deve ser uma data valida' })
+  @Validate(IdadeValida)
   nascimento: Date;
 
   @Length(11, 11, { message: 'Telefone deve possuir 11 caracteres' })
