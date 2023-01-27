@@ -6,6 +6,7 @@ import {
   Length,
   Validate,
 } from 'class-validator';
+import { ChavePixExiste } from 'src/core/validators/usuarios/validator-chavepix';
 import { CpfJaExiste } from 'src/core/validators/usuarios/validator-cpf';
 import { EmailJaExiste } from 'src/core/validators/usuarios/validator-email';
 import { IdadeValida } from 'src/core/validators/usuarios/validator-idade';
@@ -52,6 +53,7 @@ export class UsuarioRequestDto {
 
   @IsOptional()
   @Expose({ name: 'chave_pix' })
+  @Validate(ChavePixExiste)
   chavePix: string;
 
   // fotoDocumento: Foto;

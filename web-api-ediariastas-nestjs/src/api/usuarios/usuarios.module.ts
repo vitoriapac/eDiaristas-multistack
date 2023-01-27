@@ -6,8 +6,10 @@ import { UsuarioApi } from './entities/usuario.entity';
 import { UsuarioMapper } from './usuarios.mapper';
 import { UsuarioRepository } from './usuarios.repository';
 import { EmailJaExiste } from './../../core/validators/usuarios/validator-email';
+import { ChavePixExiste } from 'src/core/validators/usuarios/validator-chavepix';
 import { CpfJaExiste } from 'src/core/validators/usuarios/validator-cpf';
 import { ValidatorPasswordConfirmation } from 'src/core/validators/usuarios/validator-password';
+import { ValidatorUsuarioPix } from 'src/core/validators/usuarios/validator-usuario-pix';
 
 @Module({
   imports: [TypeOrmModule.forFeature([UsuarioApi])],
@@ -18,6 +20,8 @@ import { ValidatorPasswordConfirmation } from 'src/core/validators/usuarios/vali
     UsuarioRepository,
     EmailJaExiste,
     CpfJaExiste,
+    ChavePixExiste,
+    ValidatorUsuarioPix,
     ValidatorPasswordConfirmation,
   ],
 })
