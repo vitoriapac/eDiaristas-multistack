@@ -2,15 +2,22 @@ import { Injectable } from '@nestjs/common';
 import { UsuarioMapper } from './usuarios.mapper';
 import { UsuarioRepository } from './usuarios.repository';
 import { UsuarioRequestDto } from './dto/usuario-request.dto';
+import { ValidatorPasswordConfirmation } from './../../core/validators/usuarios/validator-password';
 
 @Injectable()
 export class UsuariosService {
   constructor(
     private usuarioRepository: UsuarioRepository,
     private usuarioMapper: UsuarioMapper,
+    private validator: ValidatorPasswordConfirmation,
   ) {}
 
   async cadastrar(usuarioRequestDto: UsuarioRequestDto) {
+    this.validator.validarConfirmacaoSenha(
+      usuarioRequestDto.password,
+      usuarioRequestDto.passwordConfirmation,
+    );
+
     const usuarioParaCadastrar =
       this.usuarioMapper.toUsuarioRequestDto(usuarioRequestDto);
 
