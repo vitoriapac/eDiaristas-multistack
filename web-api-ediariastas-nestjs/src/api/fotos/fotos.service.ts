@@ -16,7 +16,7 @@ export class FotosService {
     foto.fileName = file.filename;
     foto.contentLength = file.size;
     foto.contentType = file.mimetype;
-    foto.url = `http://${req.get('host')}/images/${file.fileName}`;
+    foto.url = `http://${req.get('host')}/images/${file.filename}`;
 
     return await this.fotoRepository.save(foto);
   }
