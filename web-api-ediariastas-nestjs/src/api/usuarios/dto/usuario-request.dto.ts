@@ -6,6 +6,7 @@ import {
   Length,
   Validate,
 } from 'class-validator';
+import { CpfJaExiste } from 'src/core/validators/usuarios/validator-cpf';
 import { EmailJaExiste } from 'src/core/validators/usuarios/validator-email';
 import { IdadeValida } from 'src/core/validators/usuarios/validator-idade';
 
@@ -36,6 +37,7 @@ export class UsuarioRequestDto {
   tipoUsuario: number;
 
   @Length(11, 11, { message: 'CPF deve possuir 11 caracteres' })
+  @Validate(CpfJaExiste)
   cpf: string;
 
   @IsOptional()
