@@ -6,6 +6,7 @@ import { TypeOrmConfigService } from './database/typeorm-config';
 import { CidadesAtendidasModule } from './api/cidades-atendidas/cidades-atendidas.module';
 import { DiaristasModule } from './api/diaristas/diaristas.module';
 import { UsuariosModule } from './api/usuarios/usuarios.module';
+import { EnderecoModule } from './api/consulta-endereco/endereco.module';
 
 @Module({
   imports: [
@@ -13,6 +14,7 @@ import { UsuariosModule } from './api/usuarios/usuarios.module';
     UsuariosModule,
     CidadesAtendidasModule,
     DiaristasModule,
+    EnderecoModule,
   ],
   controllers: [AppController],
   providers: [AppService],
