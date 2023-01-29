@@ -1,5 +1,6 @@
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Module } from '@nestjs/common';
+import { UrlGeneratorModule } from 'nestjs-url-generator';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TypeOrmConfigService } from './database/typeorm-config';
@@ -8,6 +9,8 @@ import { DiaristasModule } from './api/diaristas/diaristas.module';
 import { UsuariosModule } from './api/usuarios/usuarios.module';
 import { EnderecoModule } from './api/consulta-endereco/endereco.module';
 import { ServicosModule } from './api/servicos/servicos.module';
+import { ApiController } from './api/api.controller';
+import { HateoasIndex } from './core/hateoas/hateoas-index';
 
 @Module({
   imports: [
@@ -17,8 +20,9 @@ import { ServicosModule } from './api/servicos/servicos.module';
     DiaristasModule,
     EnderecoModule,
     ServicosModule,
+    UrlGeneratorModule.forRoot({ appUrl: 'http://localhost:3001' }),
   ],
-  controllers: [AppController],
-  providers: [AppService],
+  controllers: [AppController, ApiController],
+  providers: [AppService, HateoasIndex],
 })
 export class AppModule {}
