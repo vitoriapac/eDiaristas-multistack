@@ -9,24 +9,30 @@ export class ServicosMapper {
 
     servicoDto.id = servico.id;
     servicoDto.nome = servico.nome;
-    servicoDto.valorMinimo = servico.valorMinimo;
+    servicoDto.valorMinimo = this.converterReal(servico.valorMinimo);
     servicoDto.quantidadeHoras = servico.quantidadeHoras;
     servicoDto.porcentagem = servico.porcentagem;
-    servicoDto.valorQuarto = servico.valorQuarto;
+    servicoDto.valorQuarto = this.converterReal(servico.valorQuarto);
     servicoDto.horasQuarto = servico.horasQuarto;
-    servicoDto.valorSala = servico.valorSala;
+    servicoDto.valorSala = this.converterReal(servico.valorSala);
     servicoDto.horasSala = servico.horasSala;
-    servicoDto.valorBanheiro = servico.valorBanheiro;
+    servicoDto.valorBanheiro = this.converterReal(servico.valorBanheiro);
     servicoDto.horasBanheiro = servico.horasBanheiro;
-    servicoDto.valorCozinha = servico.valorCozinha;
+    servicoDto.valorCozinha = this.converterReal(servico.valorCozinha);
     servicoDto.horasCozinha = servico.horasCozinha;
-    servicoDto.valorQuintal = servico.valorQuintal;
+    servicoDto.valorQuintal = this.converterReal(servico.valorQuintal);
     servicoDto.horasQuintal = servico.horasQuintal;
-    servicoDto.valorOutros = servico.valorOutros;
+    servicoDto.valorOutros = this.converterReal(servico.valorOutros);
     servicoDto.horasOutros = servico.horasOutros;
     servicoDto.icone = servico.icone;
     servicoDto.posicao = servico.posicao;
 
     return servicoDto;
+  }
+
+  private converterReal(valor: number) {
+    valor = valor / 100;
+
+    return valor.toFixed(2);
   }
 }
