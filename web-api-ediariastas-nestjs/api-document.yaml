@@ -4,137 +4,149 @@ info:
   description: Api Backend da Aplicação E-diarista.
   version: 1.0.0
   contact:
-    name: Vitoria
+    name: Vitoria Pacheco
     url: https://www.github.com/vitoriapac
     email: vitoriac.pac@gmail.com
 servers:
   - url: http://localhost:3001
     description: Aplicação Nest Local
+  - url: https://ediaristas-api-php.herokuapp.com
+    description: Aplicação Laravel Heroku
 tags:
-  -name: Api
-  -name: Diaristas
-  -name: Endereco
+  - name: Api
+  - name: Serviços
+  - name: Diaristas
+  - name: Endereços
 paths:
   /api:
     get:
       operationId: getLinks
       tags:
         - Api
-      description: Exibi os links iniciais da API
-        - name: cep
-          in: query
-          required: true
-          schema:
-            type: string
-          example: '04614903'
+      description: Exibe os links iniciais da API
       responses:
-        '200':
+        "200":
           description: Exibição foi realizada com sucesso
           content:
-            'aplication/json':
+            "application/json":
               schema:
                 type: object
                 properties:
                   links:
                     type: array
                     items:
-                      $ref: '#/components/schemas/LinkResponse'
+                      $ref: "#/components/schemas/LinkResponse"
   /api/diaristas/localidades:
     get:
       operationId: getDiaristasLocalidades
       tags:
         - Diaristas
-      description: Buscar diaristas que atendem uma determinada localidade
+      description: Buscar diáristas que atendem uma determinada localidade
       parameters:
         - name: cep
           in: query
           required: true
           schema:
             type: string
-          example: '04614903'
+          example: "04614903"
       responses:
-        '200':
+        "200":
           description: Busca foi realizada com sucesso
           content:
-            'aplication/json':
+            "application/json":
               schema:
-                $ref: '#/components/schemas/DiaristaLocalidadePagedResponse'
-        '400':
-          description: CEP não informado ou inválido
+                $ref: "#/components/schemas/DiaristaLocalidadePagedResponse"
+        "400":
+          description: CEP não foi informado ou é inválido
           content:
-            'aplication/json':
+            "application/json":
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
-        '404':
-          description: CEP informado não encontrado
+                $ref: "#/components/schemas/ErrorResponse"
+        "404":
+          description: CEP informado não foi encontrado
           content:
-            'aplication/json':
+            "application/json":
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                $ref: "#/components/schemas/ErrorResponse"
   /api/diaristas/disponibilidade:
     get:
       operationId: getDisponibilidade
       tags:
         - Diaristas
-      description: Verificar a disponibilidade de diaristas por localidade
+      description: Verificar a disponibilidade de diáristas por localidade
       parameters:
         - name: cep
           in: query
           required: true
           schema:
             type: string
-          example: '04614903'
+          example: "04614903"
       responses:
-        '200':
+        "200":
           description: Verificação foi realizada com sucesso
           content:
-            'aplication/json':
+            "application/json":
               schema:
-                $ref: '#/components/schemas/DisponibilidadeResponse'
-        '400':
-          description: CEP não informado ou inválido
+                $ref: "#/components/schemas/DisponibilidadeResponse"
+        "400":
+          description: CEP não foi informado ou é inválido
           content:
-            'aplication/json':
+            "application/json":
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
-        '404':
-          description: CEP informado não encontrado
+                $ref: "#/components/schemas/ErrorResponse"
+        "404":
+          description: CEP informado não foi encontrado
           content:
-            'aplication/json':
+            "application/json":
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                $ref: "#/components/schemas/ErrorResponse"
   /api/enderecos:
     get:
       operationId: getEndereco
       tags:
-        - Endereco
-      description: Buscar dados de um endereco por CEP
+        - Endereços
+      description: Buscar dados de um endereço por CEP
       parameters:
         - name: cep
           in: query
           required: true
           schema:
             type: string
-          example: '04614903'
+          example: "04614903"
       responses:
-        '200':
+        "200":
           description: Busca foi realizada com sucesso
           content:
-            'aplication/json':
+            "application/json":
               schema:
-                $ref: '#/components/schemas/EnderecoResponse'
-        '400':
-          description: CEP não informado ou inválido
+                $ref: "#/components/schemas/EnderecoResponse"
+        "400":
+          description: CEP não foi informado ou é inválido
           content:
-            'aplication/json':
+            "application/json":
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
-        '404':
-          description: CEP informado não encontrado
+                $ref: "#/components/schemas/ErrorResponse"
+        "404":
+          description: CEP informado não foi encontrado
           content:
-            'aplication/json':
+            "application/json":
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                $ref: "#/components/schemas/ErrorResponse"
+  /api/servicos:
+    get:
+      operationId: getServicos
+      tags:
+        - Serviços
+      description: Lista os serviços cadastrados
+      responses:
+        "200":
+          description: Serviços listados com sucesso
+          content:
+            "application/json":
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/ServicoResponse"
 components:
   schemas:
     DiaristaLocalidadePagedResponse:
@@ -143,18 +155,20 @@ components:
         diaristas:
           type: array
           items:
-            $ref: '#/components/schemas/DiaristaLocalidadeResponse'
+            $ref: "#/components/schemas/DiaristaLocalidadeResponse"
+        quantidade_diaristas:
+          type: integer
     DiaristaLocalidadeResponse:
       type: object
       properties:
         nome_completo:
           type: string
         reputacao:
-          type: string
+          type: number
           format: double
-        foto_usuario:
+        fot_usuario:
           type: string
-          format: url
+          format: uri
         cidade:
           type: string
     ErrorResponse:
@@ -167,6 +181,12 @@ components:
           format: date-time
         message:
           type: string
+        erros:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
     EnderecoResponse:
       type: object
       properties:
@@ -200,8 +220,61 @@ components:
             - PUT
             - PATCH
             - DELETE
-          rel:
-            type: string
-          url:
-            type: string
-            format: url
+        rel:
+          type: string
+        uri:
+          type: string
+          format: uri
+    ServicoResponse:
+      type: object
+      properties:
+        id:
+          type: integer
+        nome:
+          type: string
+        valor_minimo:
+          type: number
+          format: double
+        qtd_horas:
+          type: integer
+        porcentagem_comissao:
+          type: number
+          format: double
+        horas_quarto:
+          type: integer
+        valor_quarto:
+          type: number
+          format: double
+        horas_sala:
+          type: integer
+        valor_sala:
+          type: number
+          format: double
+        horas_banheiro:
+          type: integer
+        valor_banheiro:
+          type: number
+          format: double
+        horas_cozinha:
+          type: integer
+        valor_cozinha:
+          type: number
+          format: double
+        horas_quintal:
+          type: integer
+        valor_quintal:
+          type: number
+          format: double
+        horas_outros:
+          type: integer
+        valor_outros:
+          type: number
+          format: double
+        icone:
+          type: string
+          enum:
+            - twf-cleaning-1
+            - twf-cleaning-2
+            - twf-cleaning-3
+        posicao:
+          type: integer
