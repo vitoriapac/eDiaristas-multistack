@@ -13,7 +13,11 @@ export class ServicosService {
   ) {}
 
   async findAll() {
-    const servicos = await this.servicoRepository.find();
+    const servicos = await this.servicoRepository.find({
+      order: {
+        posicao: 'ASC',
+      },
+    });
 
     return servicos.map((servico) =>
       this.servicoMapper.toServicoResponseDto(servico),
