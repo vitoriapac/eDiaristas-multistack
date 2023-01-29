@@ -7,6 +7,7 @@ import { CidadesAtendidasModule } from './api/cidades-atendidas/cidades-atendida
 import { DiaristasModule } from './api/diaristas/diaristas.module';
 import { UsuariosModule } from './api/usuarios/usuarios.module';
 import { EnderecoModule } from './api/consulta-endereco/endereco.module';
+import { ServicosModule } from './api/servicos/servicos.module';
 
 @Module({
   imports: [
@@ -15,6 +16,7 @@ import { EnderecoModule } from './api/consulta-endereco/endereco.module';
     CidadesAtendidasModule,
     DiaristasModule,
     EnderecoModule,
+    ServicosModule,
   ],
   controllers: [AppController],
   providers: [AppService],
