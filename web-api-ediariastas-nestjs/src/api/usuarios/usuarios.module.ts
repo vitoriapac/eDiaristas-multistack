@@ -5,14 +5,16 @@ import { UsuariosController } from './usuarios.controller';
 import { UsuarioApi } from './entities/usuario.entity';
 import { UsuarioMapper } from './usuarios.mapper';
 import { UsuarioRepository } from './usuarios.repository';
-import { EmailJaExiste } from './../../core/validators/usuarios/validator-email';
+import { Foto } from './../fotos/entities/foto.entity';
+import { EmailJaExiste } from 'src/core/validators/usuarios/validator-email';
 import { ChavePixExiste } from 'src/core/validators/usuarios/validator-chavepix';
 import { CpfJaExiste } from 'src/core/validators/usuarios/validator-cpf';
 import { ValidatorPasswordConfirmation } from 'src/core/validators/usuarios/validator-password';
 import { ValidatorUsuarioPix } from 'src/core/validators/usuarios/validator-usuario-pix';
+import { FotosService } from '../fotos/fotos.service';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([UsuarioApi])],
+  imports: [TypeOrmModule.forFeature([UsuarioApi, Foto])],
   controllers: [UsuariosController],
   providers: [
     UsuariosService,
@@ -23,6 +25,7 @@ import { ValidatorUsuarioPix } from 'src/core/validators/usuarios/validator-usua
     ChavePixExiste,
     ValidatorUsuarioPix,
     ValidatorPasswordConfirmation,
+    FotosService,
   ],
 })
 export class UsuariosModule {}

@@ -2,10 +2,11 @@ import { Injectable } from '@nestjs/common';
 import { UsuarioResponseDto } from './dto/usuario-response.dto';
 import { UsuarioRequestDto } from './dto/usuario-request.dto';
 import { UsuarioApi } from './entities/usuario.entity';
+import { Foto } from '../fotos/entities/foto.entity';
 
 @Injectable()
 export class UsuarioMapper {
-  toUsuarioRequestDto(usuarioDto: UsuarioRequestDto): UsuarioApi {
+  toUsuarioRequestDto(usuarioDto: UsuarioRequestDto, foto: Foto): UsuarioApi {
     const usuario = new UsuarioApi();
 
     usuario.nomeCompleto = usuarioDto.nomeCompleto;
@@ -17,6 +18,7 @@ export class UsuarioMapper {
     usuario.telefone = usuarioDto.telefone;
     usuario.chavePix = usuarioDto.chavePix;
     usuario.reputacao = usuarioDto.reputacao;
+    usuario.fotoDocumento = foto;
 
     return usuario;
   }
