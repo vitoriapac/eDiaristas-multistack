@@ -4,7 +4,7 @@ import TipoUsuario from 'src/api/usuarios/enum/tipo-usuario.enum';
 
 export class ValidatorUsuarioPix {
   validarUsuarioPix(usuarioDto: UsuarioRequestDto) {
-    if (usuarioDto.tipoUsuario === TipoUsuario.DIARISTA) {
+    if (usuarioDto.tipoUsuario == TipoUsuario.DIARISTA) {
       if (!usuarioDto.chavePix) {
         throw new BadRequestException(
           'Para o tipo de usuario DIARISTA a chave pix é obrigatória',

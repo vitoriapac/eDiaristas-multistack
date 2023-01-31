@@ -34,6 +34,7 @@ export class UsuarioMapper {
     usuarioDto.nascimento = usuario.nascimento;
     usuarioDto.telefone = usuario.telefone;
     usuarioDto.chavePix = usuario.chavePix;
+    usuarioDto.reputacao = Math.round(usuario.reputacao);
 
     return usuarioDto;
   }
