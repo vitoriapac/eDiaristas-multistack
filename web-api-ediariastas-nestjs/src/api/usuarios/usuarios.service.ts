@@ -6,6 +6,7 @@ import { UsuarioRequestDto } from './dto/usuario-request.dto';
 import { ValidatorPasswordConfirmation } from 'src/core/validators/usuarios/validator-password';
 import { ValidatorUsuarioPix } from 'src/core/validators/usuarios/validator-usuario-pix';
 import { FotosService } from '../fotos/fotos.service';
+import { MailService } from 'src/core/services/mail/mail.service';
 
 @Injectable()
 export class UsuariosService {
@@ -15,6 +16,7 @@ export class UsuariosService {
     private validator: ValidatorPasswordConfirmation,
     private validatorPix: ValidatorUsuarioPix,
     private foto: FotosService,
+    private mailService: MailService,
   ) {}
 
   async cadastrar(
@@ -49,6 +51,8 @@ export class UsuariosService {
     const usuarioCadastrado = await this.usuarioRepository.repository.save(
       usuarioParaCadastrar,
     );
+
+    await this.mailService.enviarEmailDeConfirmacao(usuarioCadastrado);
 
     return this.usuarioMapper.toUsuarioResponseDto(usuarioCadastrado);
   }

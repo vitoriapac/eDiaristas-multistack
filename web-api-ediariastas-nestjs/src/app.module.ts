@@ -1,6 +1,7 @@
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Module } from '@nestjs/common';
 import { UrlGeneratorModule } from 'nestjs-url-generator';
+import { ConfigModule } from '@nestjs/config';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TypeOrmConfigService } from './database/typeorm-config';
@@ -14,6 +15,7 @@ import { HateoasIndex } from './core/hateoas/hateoas-index';
 
 @Module({
   imports: [
+    ConfigModule.forRoot(),
     TypeOrmModule.forRootAsync({ useClass: TypeOrmConfigService }),
     UsuariosModule,
     CidadesAtendidasModule,

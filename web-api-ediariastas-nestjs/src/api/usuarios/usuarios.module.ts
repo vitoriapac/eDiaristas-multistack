@@ -12,9 +12,10 @@ import { CpfJaExiste } from 'src/core/validators/usuarios/validator-cpf';
 import { ValidatorPasswordConfirmation } from 'src/core/validators/usuarios/validator-password';
 import { ValidatorUsuarioPix } from 'src/core/validators/usuarios/validator-usuario-pix';
 import { FotosService } from '../fotos/fotos.service';
+import { MailModule } from 'src/core/services/mail/mail.module';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([UsuarioApi, Foto])],
+  imports: [TypeOrmModule.forFeature([UsuarioApi, Foto]), MailModule],
   controllers: [UsuariosController],
   providers: [
     UsuariosService,
